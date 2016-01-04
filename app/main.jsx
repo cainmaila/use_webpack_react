@@ -1,4 +1,5 @@
-import './main.css';
+// import './main.css';
+import "./main.less";
 import React from 'react';
 import Hello from './component.jsx';
 

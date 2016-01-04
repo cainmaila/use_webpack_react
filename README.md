@@ -12,6 +12,9 @@ npm install babel-preset-es2015 --save
 npm install babel-preset-react --save
 npm install react --save
 npm install css-loader style-loader --save
+// css use less
+npm install less
+npm install less-loader
 ```
 
 ## 建立 webpack.config.js
@@ -33,14 +36,18 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.jsx?$/,
-            loader: 'babel',
-            exclude: /node_modules/,
-            query: {
-                presets: ['es2015', "react"]
-            },
-            noParse: [pathToReact, node_modules ]
-        }]
+                test: /\.jsx?$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', "react"]
+                },
+                noParse: [pathToReact, node_modules]
+            },{
+                test: /\.less$/,
+                loader: 'style!css!less'
+            }
+        ]
     }
 };
 ```

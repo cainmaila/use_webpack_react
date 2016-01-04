@@ -15,16 +15,17 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: /\.jsx?$/,
-            loader: 'babel',
-            exclude: /node_modules/,
-            query: {
-                presets: ['es2015', "react"]
-            },
-            noParse: [pathToReact, node_modules]
-        }, {
-            test: /\.css$/, // Only .css files
-            loader: 'style!css' // Run both loaders
-        }]
+                test: /\.jsx?$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', "react"]
+                },
+                noParse: [pathToReact, node_modules]
+            },{
+                test: /\.less$/,
+                loader: 'style!css!less'
+            }
+        ]
     }
 };
