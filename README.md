@@ -10,11 +10,14 @@ npm install babel-loader --save
 npm install babel-core --save
 npm install babel-preset-es2015 --save
 npm install babel-preset-react --save
-npm install react --save
+npm install react react-dom --save
+npm install file-loader --save
 npm install css-loader style-loader --save
 // css use less
-npm install less
-npm install less-loader
+npm install less --save
+npm install less-loader --save
+// url(轉bace64)
+npm install url-loader --save
 ```
 
 ## 建立 webpack.config.js
@@ -22,12 +25,14 @@ npm install less-loader
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+var pathToReactDom = path.resolve(node_modules, 'react-dom/dist/react-dom.min.js');
 
 module.exports = {
     entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.jsx')],
     resolve: {
         alias: {
-            'react': pathToReact
+            'react': pathToReact,
+            'react-dom':pathToReactDom
         }
     },
     output: {
@@ -36,20 +41,24 @@ module.exports = {
     },
     module: {
         loaders: [{
-                test: /\.jsx?$/,
-                loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015', "react"]
-                },
-                noParse: [pathToReact, node_modules]
-            },{
-                test: /\.less$/,
-                loader: 'style!css!less'
-            }
-        ]
+            test: /\.jsx?$/,
+            loader: 'babel',
+            exclude: /node_modules/,
+            query: {
+                presets: ['es2015', "react"]
+            },
+            noParse: [pathToReact,pathToReactDom, node_modules]
+        }, {
+            test: /\.less$/,
+            loader: 'style!css!less'
+        }, {
+            test: /\.(png|jpg)$/,
+            loader: 'url?limit=25000'
+        }]
     }
 };
+
+
 ```
 
 ## 建立專案
@@ -57,6 +66,7 @@ module.exports = {
 ```
 mkdir app
 mkdir build
+mkdir dist
 ```
 ## npm script
 在 package.json 加入
@@ -64,6 +74,7 @@ mkdir build
 "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
+    "deploy": "SET NODE_ENV=production & webpack -p --config webpack.production.config.js"
   }
 ```
 **bulid** 編譯專案可以用<br>
@@ -83,6 +94,44 @@ webpack-dev-server - 在 localhost:8080 建立一个 Web 服务器<br>
 開發時期本機服務器
 ```
 http://localhost:8080 
+```
+**deploy** 專案佈署
+
+建立佈署用檔案 **webpack.production.config.js**
+```javascript
+var path = require('path');
+var node_modules_dir = path.resolve(__dirname, 'node_modules');
+
+var config = {
+  entry: path.resolve(__dirname, 'app/main.jsx'),
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [{
+        test: /\.jsx?$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+            presets: ['es2015', "react"]
+        }
+    }, {
+        test: /\.less$/,
+        loader: 'style!css!less'
+    }, {
+        test: /\.(png|jpg)$/,
+        loader: 'url?limit=25000'
+    }]
+  }
+};
+
+module.exports = config;
+```
+
+copy build 資料夾的 **index.html** 到 **dist**資料夾 中， dev 用掛件記得抽掉
+```
+<script src="http://localhost:8080/webpack-dev-server.js"></script>
 ```
 
 ## 參考網址
