@@ -129,16 +129,22 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _component = __webpack_require__(9);
+	var _reactDom = __webpack_require__(9);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _component = __webpack_require__(10);
 
 	var _component2 = _interopRequireDefault(_component);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	main(); // import './main.css';
+	// import './main.css';
+
+	main();
 
 	function main() {
-	    _react2.default.render(_react2.default.createElement(_component2.default, null), document.getElementById('app'));
+	    _reactDom2.default.render(_react2.default.createElement(_component2.default, null), document.getElementById('app'));
 	}
 
 /***/ },
@@ -522,6 +528,23 @@
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * ReactDOM v0.14.5
+	 *
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 */
+	!function(e){if(true)module.exports=e(__webpack_require__(8));else if("function"==typeof define&&define.amd)define(["react"],e);else{var f;f="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:this,f.ReactDOM=e(f.React)}}(function(e){return e.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED});
+
+/***/ },
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -557,7 +580,7 @@
 	      return _react2.default.createElement(
 	        'h1',
 	        null,
-	        'Hello world 123'
+	        'Hello world Cain'
 	      );
 	    }
 	  }]);
