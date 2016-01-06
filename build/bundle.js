@@ -182,7 +182,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\n  background-image: url(" + __webpack_require__(6) + ");\n}\nh1 {\n  display: block;\n  position: relative;\n  width: 200px;\n  right: -200px;\n}\n", ""]);
+	exports.push([module.id, "body {\n  background-image: url(" + __webpack_require__(6) + ");\n}\nh1 {\n  display: block;\n  position: relative;\n  width: 200px;\n  right: -300px;\n}\n", ""]);
 
 	// exports
 
@@ -580,7 +580,7 @@
 	      return _react2.default.createElement(
 	        'h1',
 	        null,
-	        'Hello world Cain'
+	        'Hello world Cain XXX'
 	      );
 	    }
 	  }]);

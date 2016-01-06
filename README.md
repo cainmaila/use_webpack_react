@@ -12,11 +12,12 @@ npm init
 npm install webpack --save
 npm install webpack-dev-server --save
 npm install path --save
-npm install babel-loader --save
 npm install babel-core --save
+npm install babel-loader --save
 npm install babel-preset-es2015 --save
 npm install babel-preset-react --save
-npm install react react-dom --save
+npm install react --save
+npm install react-dom --save
 npm install file-loader --save
 npm install css-loader style-loader --save
 // css use less
@@ -24,6 +25,14 @@ npm install less --save
 npm install less-loader --save
 // url(轉bace64)
 npm install url-loader --save
+```
+
+## 建立專案架構
+建立架構用資料夾
+```
+mkdir app
+mkdir build
+mkdir dist
 ```
 
 ## 建立 webpack.config.js
@@ -65,19 +74,36 @@ module.exports = {
 };
 ```
 
-## 建立專案
-建立架構用資料夾
+或者 ```npm init``` 下面這段
 ```
-mkdir app
-mkdir build
-mkdir dist
+"devDependencies": {
+    "babel-core": "^6.3.26",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.2",
+    "path": "^0.12.7",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5"
+  }
 ```
+
+
 ## npm script
 在 package.json 加入
 ```
 "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build"
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
     "deploy": "SET NODE_ENV=production & webpack -p --config webpack.production.config.js"
   }
 ```
@@ -85,7 +111,7 @@ mkdir dist
 ```
 npm run bulid
 ```
-**de**v<br>
+**dev**<br>
 ```
 npm run dev
 ```
@@ -95,6 +121,10 @@ webpack-dev-server - 在 localhost:8080 建立一个 Web 服务器<br>
 --colors - Yay，命令行中显示颜色！<br>
 --content-base build - 指向设置的输出目录<br>
 --hot 自動配置 port<br>
+html可以加上
+```
+<script src="http://localhost:8080/webpack-dev-server.js"></script>
+```
 開發時期本機服務器
 ```
 http://localhost:8080 
