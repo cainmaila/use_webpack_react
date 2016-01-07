@@ -182,3 +182,4 @@ copy build 資料夾的 **index.html** 到 **dist**資料夾 中， dev 用掛�
 
 ## 參考網址
 [React 和 Webpack 小书](https://hainuo.gitbooks.io/react-webpack-cookbook/content/index.html)
+[React 入门实例教程](http://www.ruanyifeng.com/blog/2015/03/react.html)
